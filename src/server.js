@@ -4,15 +4,18 @@ const express = require('./lib/express');
 const Categories = require('./controllers/category.controller');
 const SubCategories = require('./controllers/subCategory.controller');
 const Product = require('./controllers/product.controller');
+const Users = require('./controllers/user.controllers');
 
 // PORT
 const PORT = process.env.PORT || 5000;
 
 // Server running function
 function httpServer(req, res) {
-	
 	// Express Class
 	const app = new express(req, res);
+
+	// Users POST
+	app.post('/users', Users.POST);
 
 	// Categories GET
 	app.get('/categories', Categories.GET);

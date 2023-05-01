@@ -17,40 +17,22 @@ function httpServer(req, res) {
 	// Users POST
 	app.post('/users', Users.POST);
 
-	// Categories GET
+	// Categorys GET, POST, DELETE
 	app.get('/categories', Categories.GET);
-
-	// Categories POST
 	app.post('/categories', Categories.POST);
-
-	// Categories PUT
 	app.put('/categories', Categories.PUT);
-
-	// Categories DELETE
 	app.delete('/categories', Categories.DELETE);
 
-	// SubCategories GET
+	// SubCategorys GET, POST, DELETE
 	app.get('/subcategories', SubCategories.GET);
-
-	// SubCategories POST
 	app.post('/subcategories', SubCategories.POST);
-
-	// SubCategories PUT
 	app.put('/subcategories', SubCategories.PUT);
-
-	// SubCategories DELETE
 	app.delete('/subcategories', SubCategories.DELETE);
 
-	// Products GET
+	// Produsts GET, POST, DELETE
 	app.get('/products', Product.GET);
-
-	// Products POST
 	app.post('/products', Product.POST);
-
-	// Products PUT
 	app.put('/products', Product.PUT);
-
-	// Products DELETE
 	app.delete('/products', Product.DELETE);
 }
 

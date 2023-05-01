@@ -1,5 +1,6 @@
 const { writeFile, readFile } = require('../utils/model');
 
+// Subcategory controller
 const SubCategories = {
 	GET: (req, res) => {
 		res.setHeader('Content-Type', 'application/json');
@@ -13,7 +14,6 @@ const SubCategories = {
 			)),
 				delete subCategory.category_id;
 		});
-
 		res.end(JSON.stringify(subCategories));
 	},
 
@@ -24,7 +24,6 @@ const SubCategories = {
 			const subCategory = readFile('subCategory');
 
 			const { category_id, sub_category_name } = JSON.parse(str);
-
 			const newCategory = {
 				sub_category_id: subCategory.at(-1)?.sub_category_id + 1 || 1,
 				category_id,
@@ -33,9 +32,7 @@ const SubCategories = {
 
 			subCategory.push(newCategory);
 			writeFile('subCategory', subCategory);
-
-			res.writeHead(201, { 'Content-type': 'application/json' });
-			res.end(JSON.stringify({ status: 201, success: 'Category created' }));
+			res.json(200, { status: 200, success: 'SubCategory created' });
 		});
 	},
 	PUT: (req, res) => {
@@ -45,7 +42,6 @@ const SubCategories = {
 			const subCategory = readFile('subCategory');
 
 			const { sub_category_id, sub_category_name } = JSON.parse(str);
-
 			const newCategory = subCategory.find(
 				(item) => item.sub_category_id == sub_category_id,
 			);
@@ -54,9 +50,7 @@ const SubCategories = {
 				sub_category_name || newCategory.sub_category_name;
 
 			writeFile('subCategory', subCategory);
-
-			res.writeHead(200, { 'Content-type': 'application/json' });
-			res.end(JSON.stringify({ status: 200, success: 'Category changed' }));
+			res.json(200, { status: 200, success: 'SubCategory changed' });
 		});
 	},
 
@@ -67,15 +61,12 @@ const SubCategories = {
 			const subCategory = readFile('subCategory');
 
 			const { sub_category_id } = JSON.parse(str);
-
 			const newCategory = subCategory.filter(
 				(item) => item.sub_category_id != sub_category_id,
 			);
 
 			writeFile('subCategory', newCategory);
-
-			res.writeHead(200, { 'Content-type': 'application/json' });
-			res.end(JSON.stringify({ status: 200, success: 'Category deleted' }));
+			res.json(200, { status: 200, success: 'SubCategory deleted' });
 		});
 	},
 };

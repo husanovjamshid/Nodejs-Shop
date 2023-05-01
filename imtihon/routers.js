@@ -69,7 +69,16 @@
         }
     ]
 
-
+let data = product.filter((item) => {
+			if (sub_category_id != undefined && model != undefined) {
+				return item.sub_category_id == sub_category_id && item.model == model;
+			}
+			if (category_id != undefined) {
+				return item.category_id == category_id;
+			} else {
+				return item.sub_category_id == sub_category_id || item.model == model;
+			}
+		});
 
 
 

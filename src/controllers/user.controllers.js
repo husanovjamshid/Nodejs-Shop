@@ -1,5 +1,6 @@
 const { readFile, hashPassword } = require('../utils/model');
 
+// Users controller
 const Users = {
 	POST: (req, res) => {
 		let str = '';
@@ -8,7 +9,7 @@ const Users = {
 			const user = readFile('users');
 			try {
 				const { username, password } = JSON.parse(str);
-				
+
 				const admin = user.filter(
 					(item) =>
 						item.username == username && item.password == hashPassword(password),
@@ -18,11 +19,9 @@ const Users = {
 					throw new Error('Invalid username or password');
 				}
 
-				res.writeHead(200, { 'Content-type': 'application/json' });
-				res.end(JSON.stringify({ status: 200, success: 'Ok' }));
+				res.json(200, { status: 200, success: 'Ok' });
 			} catch (error) {
-				res.writeHead(400, { 'Content-Type': 'application/json' });
-				res.end(JSON.stringify({ status: 400, message: error.message }));
+				res.json(400, { status: 400, message: error.message });
 			}
 		});
 	},

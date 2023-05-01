@@ -9,7 +9,6 @@ class Express {
 	get(route, callback) {
 		const { pathname, query } = url.parse(this.req.url);
 		this.req.query = queryString.parse(query);
-		// console.log(Object.keys(this.req.query));
 		if (pathname == route && this.req.method == 'GET') {
 			callback(this.req, this.res);
 		}

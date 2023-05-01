@@ -4,18 +4,31 @@ const Product = {
 	GET: (req, res) => {
 		res.setHeader('Content-Type', 'application/json');
 		const product = readFile('products');
+		const subCategory = readFile('subCategory');
 
-		let { sub_category_id, model } = req.query;
+		let { sub_category_id, model, category_id } = req.query;
+		// console.log(category_id);
+		const sub = subCategory.filter((item) => item.category_id == category_id);
+		console.log(sub);
 
-		const data = product.filter((item) => {
-			if (sub_category_id != undefined && model != undefined) {
-				return item.sub_category_id == sub_category_id && item.model == model;
-			} else {
-				return item.sub_category_id == sub_category_id || item.model == model;
-			}
-		});
+		const data = product.map(item => {
+			
+		})
 
-		res.end(JSON.stringify(data));
+		// const data = product.filter((item) => {
+		// 	if (sub_category_id != undefined && model != undefined) {
+		// 		return item.sub_category_id == sub_category_id && item.model == model;
+		// 	} else {
+		// 		return item.sub_category_id == sub_category_id || item.model == model;
+		// 	}
+		// });
+
+	
+	
+
+	
+
+		res.end(JSON.stringify(product));
 	},
 	// res.writeHead(400, { 'Content-Type': 'application/json' });
 	// res.end(JSON.stringify({ status: 400, message: error.message }));

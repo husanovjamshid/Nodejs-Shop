@@ -59,7 +59,7 @@ const SubCategories = {
 		req.on('data', (chunk) => (str += chunk));
 		req.on('end', () => {
 			const subCategory = readFile('subCategory');
-
+			
 			const { sub_category_id } = JSON.parse(str);
 			const newCategory = subCategory.filter(
 				(item) => item.sub_category_id != sub_category_id,

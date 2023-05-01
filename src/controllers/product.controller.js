@@ -14,8 +14,7 @@ const Product = {
 				(subCategory) => product.sub_category_id == subCategory.sub_category_id,
 			).category_id;
 		});
-
-		
+	
 		let data = product.filter((item) => {
 			let products = true;
 			for (key in req.query) {
@@ -60,7 +59,7 @@ const Product = {
 		req.on('data', (chunk) => (str += chunk));
 		req.on('end', () => {
 			const product = readFile('products');
-
+			
 			const { product_id, product_name, price } = JSON.parse(str);
 			const newProduct = product.find((item) => item.product_id == product_id);
 
@@ -76,8 +75,8 @@ const Product = {
 		let str = '';
 		req.on('data', (chunk) => (str += chunk));
 		req.on('end', () => {
-			const product = readFile('products');
 
+			const product = readFile('products');
 			const { product_id } = JSON.parse(str);
 			const newProduct = product.filter((item) => item.product_id != product_id);
 
